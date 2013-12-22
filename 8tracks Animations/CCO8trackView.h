@@ -11,7 +11,6 @@
 
 @interface CCO8trackView : UIView
 
--(void)make8track;
 -(void)go;
 
 @end

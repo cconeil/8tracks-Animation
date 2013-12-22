@@ -30,7 +30,7 @@
 -(void)addImage {
     
     UIImage *image = [UIImage imageNamed:@"8tracks.jpg"];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(7, 12, 180, 180)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(9, 12, 180, 180)];
     imageView.image = image;
     [self addSubview:imageView];
 }

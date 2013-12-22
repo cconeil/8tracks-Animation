@@ -19,7 +19,7 @@
     return self;
 }
 
-#define kAlphaValue 60.0
+#define kAlphaValue 63.0
 #define MIN_t 0.0000001
 #define MAX_t 2.0 * M_PI
 #define SQRT_2 sqrt(2)
@@ -27,8 +27,15 @@
 
 #define SKEW_Y .05
 
-#define OFFSET_X 100
-#define OFFSET_Y 100
+#define OFFSET 100
+
+#define Y_MIN 10
+#define Y_MIN_NEG -10
+
+
+
+#define X_MIN 10
+#define X_MIN_NEG -10
 
 
 -(NSArray *)lemniscate {
@@ -44,26 +51,35 @@
 }
 
 
+// This function get's the Cartesian 'x' value of the graph at angle t
+// in radians.  It returns x as a CGFloat
 -(CGFloat)getX:(CGFloat)t {
     //     a * sqrt(2) * cos(t)
     // x = --------------------
     //         sin(t)^2 + 1
-    float numerator = kAlphaValue * SQRT_2 * cosf(t);
+    float numerator = kAlphaValue * sqrtf(1.6) * cosf(t);
     float denominator = powf(sinf(t), 2) + 1;
-    return OFFSET_X + numerator / denominator;
+    
+    float x = numerator / denominator;
+    return x + OFFSET;
 }
 
 
+// This function get's the Cartesian 'y' value of the graph at angle t
+// in radians.  It returns y as a CGFloat
 -(CGFloat)getY:(CGFloat)t {
     //     a * sqrt(2) * cos(t)sin(t)
     // y = --------------------
     //         sin(t)^2 + 1
-    float numerator = kAlphaValue * SQRT_2 * cosf(t) * sinf(t);
+    float numerator = kAlphaValue * sqrtf(2.2) * cosf(t) * sinf(t);
     float denominator = powf(sinf(t), 2) + 1;
-    return OFFSET_Y + numerator / denominator;
+    
+    float y = numerator / denominator;
+    return y + OFFSET;
 }
 
-#define kLineWidth 14.0
+
+#define kLineWidth 15.0
 -(UIBezierPath *)get8trackPath {
     UIBezierPath *path = [UIBezierPath bezierPath];
     
@@ -100,6 +116,7 @@
     return path;
 }
 
+
 -(CAShapeLayer *)get8tracksLayer {
     CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
     shapeLayer.opaque = NO;
@@ -116,8 +133,8 @@
     return shapeLayer;
 }
 
+
 -(void)go {
-    
     CAShapeLayer *shapeLayer = [self get8tracksLayer];
     [self.layer addSublayer:shapeLayer];
     
