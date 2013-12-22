@@ -23,4 +23,9 @@
 #define MAX_t 2.0 * M_PI
 #define INCREMENT_t 0.01
 
+#define kRefreshControlStandardHeight 84.0f
+#define kRefreshControlFullHeight 500.0f
+#define kRefreshControlHalfHeight (kRefreshControlStandardHeight / 2.0f)
+#define kRefreshLogoSize 64.0
+
 #endif

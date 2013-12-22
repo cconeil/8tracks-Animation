@@ -17,6 +17,8 @@
     if (self) {
         [self setDefaults];
         [self setPropertiesForFrame:frame];
+        logo = [self get8tracksLayer];
+//        [self.layer addSublayer:logo];
     }
     return self;
 }
@@ -37,20 +39,6 @@
     a = offset * .63;
     lineWidth = .25 * a;
     padding = lineWidth / M_PI / (offset / 4);
-}
-
-
-// Returns false if the point falls under part of the logo that
-// should not be drawn (the very start and the very finish)
--(BOOL)shouldAdd:(CGPoint)point {
-    float paddingMinus = padding - lineWidth;
-    if (point.x > paddingMinus && point.x < padding) {
-//        if (point.y > paddingMinus && point.y < padding) {
-//            NSLog(@"Not adding point x: %f, y: %f", point.x, point.y);
-//            return NO;
-//        }
-    }
-    return YES;
 }
 
 
@@ -140,8 +128,6 @@
         p1 = p2; // make the new point equal to the previous point.
     }
     
-    // draw the graph.
-//    [path closePath];
     return path;
 }
 
@@ -167,8 +153,8 @@
 // Adds the 8tracks logo as a sublayer to the view and animates it
 // repeating based on the numRepeats
 -(void)animate {
-    CAShapeLayer *shapeLayer = [self get8tracksLayer];
-    [self.layer addSublayer:shapeLayer];
+    logo = [self get8tracksLayer];
+    [self.layer addSublayer:logo];
     
     // animate path
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -178,8 +164,17 @@
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
     pathAnimation.repeatCount = numRepeats;
     pathAnimation.autoreverses = NO;
-    [shapeLayer addAnimation:pathAnimation forKey:@"strokeEnd"];
+    [logo addAnimation:pathAnimation forKey:@"strokeEnd"];
 }
+
+-(void)show {
+    
+}
+
+-(void)stopAnimating {
+    [logo removeFromSuperlayer];
+}
+
 
 
 @end

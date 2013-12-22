@@ -16,6 +16,7 @@
 
 @interface CCO8trackView : UIView {
     float offset, a, lineWidth, padding;
+    CAShapeLayer *logo;
 }
 
 @property NSInteger numRepeats; // defaults to 0
@@ -23,5 +24,6 @@
 @property (nonatomic, strong) UIColor *graphColor; // defaults to paleWhite
 
 -(void)animate;
+-(void)stopAnimating;
 
 @end

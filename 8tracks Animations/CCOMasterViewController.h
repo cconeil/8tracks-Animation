@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "CCOMainView.h"
+#import "CCO8tracksUIRefreshControl.h"
 #import "UIColor+_tracks.h"
 #import "Constants.h"
 
-@interface CCOMasterViewController : UIViewController <COOMainViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CCOMasterViewController : UIViewController <COOMainViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+    UISwipeGestureRecognizer *swipe;
+}
 
 @property (strong, nonatomic) CCOMainView *startView;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *tableViewData;
+@property (strong, nonatomic) CCO8tracksUIRefreshControl *refreshControl;
+
 @end
