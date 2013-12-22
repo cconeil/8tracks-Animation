@@ -16,7 +16,7 @@
 #define INCREMENT_t 0.01
 
 @interface CCO8trackView : UIView {
-    float offset, a, lineWidth;
+    float offset, a, lineWidth, padding;
 }
 
 @property NSInteger numRepeats;

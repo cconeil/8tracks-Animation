@@ -26,8 +26,8 @@ BOOL isOn = NO;
     
     if (!isOn) {
         isOn = YES;
-        CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(0, 0, 123, 123)];
-        v.numRepeats = 20;
+        CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+        v.numRepeats = 0;
         [self addSubview:v];
         [v animate];
     } else {
@@ -41,20 +41,11 @@ BOOL isOn = NO;
 }
 
 -(void)addImage {
-    
     UIImage *image = [UIImage imageNamed:@"8tracks.jpg"];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(9, 12, 180, 180)];
     imageView.image = image;
     [self addSubview:imageView];
 }
-
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-//- (void)drawRect:(CGRect)rect
-//{
-//    
-//}
 
 
 @end

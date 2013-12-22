@@ -25,22 +25,24 @@
 // proportionally.  The values .63 and .25 came from some logic
 // as well as trial and error.
 -(void)setPropertiesForFrame:(CGRect)frame {
+
     offset = frame.size.width / 2;
     a = offset * .63;
     lineWidth = .25 * a;
-    padding = lineWidth / M_PI / (offset / 4);
+    padding = lineWidth / 10 + lineWidth / 2 + offset;
 }
 
 
 // Returns false if the point falls under part of the logo that
 // should not be drawn (the very start and the very finish)
 -(BOOL)shouldAdd:(CGPoint)point {
-    float paddingMinus = padding - lineWidth;
-    if (point.x > paddingMinus && point.x < padding) {
-//        if (point.y > paddingMinus && point.y < padding) {
-//            NSLog(@"Not adding point x: %f, y: %f", point.x, point.y);
-//            return NO;
-//        }
+    float paddingPlus = padding + lineWidth;
+    if (point.x < paddingPlus && point.x > padding) {
+        if (point.y < paddingPlus && point.y > padding) {
+            NSLog(@"Adding point x: %f, y: %f", point.x, point.y);
+            return NO;
+        }
+
     }
     return YES;
 }
@@ -52,18 +54,24 @@
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:capacity];
     
     // start in the middle
-    CGFloat t = START_t + padding;
+    CGFloat t = START_t;
     while (t < MAX_t) {
         CGPoint point = CGPointMake([self getX:t], [self getY:t]);
-        [values addObject:[NSValue valueWithCGPoint:point]];
+        if ([self shouldAdd:point]) {
+            [values addObject:[NSValue valueWithCGPoint:point]];
+//            NSLog(@"Adding point x: %f, y: %f", point.x, point.y);
+        }
         t += INCREMENT_t;
     }
     
     // finish the drawing
     t = 0.0;
-    while (t < START_t - padding) {
+    while (t < START_t) {
         CGPoint point = CGPointMake([self getX:t], [self getY:t]);
-        [values addObject:[NSValue valueWithCGPoint:point]];
+        if ([self shouldAdd:point]) {
+            [values addObject:[NSValue valueWithCGPoint:point]];
+//            NSLog(@"Adding point x: %f, y: %f", point.x, point.y);
+        }
         t += INCREMENT_t;
     }
     
@@ -133,7 +141,7 @@
     }
     
     // draw the graph.
-//    [path closePath];
+    [path closePath];
     return path;
 }
 
