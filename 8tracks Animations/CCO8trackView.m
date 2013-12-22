@@ -19,11 +19,13 @@
     return self;
 }
 
-#define kAlphaValue 40.0
+#define kAlphaValue 60.0
 #define MIN_t 0.0000001
 #define MAX_t 2.0 * M_PI
 #define SQRT_2 sqrt(2)
-#define INCREMENT_t 0.001
+#define INCREMENT_t 0.01
+
+#define SKEW_Y .05
 
 #define OFFSET_X 100
 #define OFFSET_Y 100
@@ -61,13 +63,17 @@
     return OFFSET_Y + numerator / denominator;
 }
 
--(void)make8track {
+#define kLineWidth 14.0
+-(UIBezierPath *)get8trackPath {
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path setLineWidth:8.0];
+    
+    path.lineWidth = kLineWidth;
     [path setLineCapStyle:kCGLineCapRound];
     [path setLineJoinStyle:kCGLineJoinRound];
     
     [[UIColor redColor] setStroke];
+    [[UIColor clearColor] setFill];
+    
     NSArray *values = [self lemniscate];
     
     // start at our initial point.
@@ -90,16 +96,47 @@
     }
     
     // draw the graph.
-    [path stroke];
-    //    [path fill];
+    [path closePath];
+    return path;
+}
+
+-(CAShapeLayer *)get8tracksLayer {
+    CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
+    shapeLayer.opaque = NO;
+    [shapeLayer setFrame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [shapeLayer setPath: [[self get8trackPath] CGPath]];
+    [shapeLayer setMasksToBounds:YES];
+    
+    float angle = M_PI / 4;
+    shapeLayer.transform = CATransform3DMakeRotation (angle, 0, 0, -1);
+    shapeLayer.fillColor = [[UIColor clearColor] CGColor];
+    shapeLayer.strokeColor = [[UIColor redColor] CGColor];
+    shapeLayer.lineWidth = kLineWidth;
+
+    return shapeLayer;
+}
+
+-(void)go {
+    
+    CAShapeLayer *shapeLayer = [self get8tracksLayer];
+    [self.layer addSublayer:shapeLayer];
+    
+    // animate path
+    CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    pathAnimation.duration = 2.5f;
+    pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+    pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+    pathAnimation.repeatCount = 0;
+    pathAnimation.autoreverses = NO;
+    [shapeLayer addAnimation:pathAnimation forKey:@"strokeEnd"];
 }
 
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    [self make8track];
-}
+//- (void)drawRect:(CGRect)rect
+//{
+//    [self make8track];
+//}
 
 @end

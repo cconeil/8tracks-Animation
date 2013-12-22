@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface CCO8trackView : UIView
+
+-(void)make8track;
+-(void)go;
 
 @end

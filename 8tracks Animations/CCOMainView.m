@@ -14,15 +14,26 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        [self addImage];
     }
     return self;
 }
 
+
 -(void)add8track {
-    CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(30, 30, 200, 200)];
+    CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     [self addSubview:v];
+    [v go];
 }
 
+-(void)addImage {
+    
+    UIImage *image = [UIImage imageNamed:@"8tracks.jpg"];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(7, 12, 180, 180)];
+    imageView.image = image;
+    [self addSubview:imageView];
+}
 
 
 // Only override drawRect: if you perform custom drawing.
