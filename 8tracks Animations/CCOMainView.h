@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCO8trackView.h"
+#import "UIColor+_tracks.h"
 
 @interface CCOMainView : UIView
 

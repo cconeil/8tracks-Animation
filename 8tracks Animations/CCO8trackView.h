@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "UIColor+_tracks.h"
 
 
 #define MIN_t 0.0000001
@@ -19,7 +20,10 @@
     float offset, a, lineWidth, padding;
 }
 
-@property NSInteger numRepeats;
+@property NSInteger numRepeats; // defaults to 0
+@property float duration; // defaults to 2.5
+@property (nonatomic, strong) UIColor *bgColor; // defaults to clear
+@property (nonatomic, strong) UIColor *graphColor; // defaults to paleWhite
 
 -(void)animate;
 

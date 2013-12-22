@@ -28,6 +28,9 @@ BOOL isOn = NO;
         isOn = YES;
         CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
         v.numRepeats = 0;
+        v.graphColor = [UIColor clouds];
+        
+        
         [self addSubview:v];
         [v animate];
     } else {

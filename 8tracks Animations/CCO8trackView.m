@@ -9,17 +9,26 @@
 #import "CCO8trackView.h"
 
 @implementation CCO8trackView
-@synthesize numRepeats;
+@synthesize numRepeats, duration, bgColor, graphColor;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setDefaults];
         [self setPropertiesForFrame:frame];
     }
     return self;
 }
 
+
+// sets all of the defaults for the customizable paramaters
+-(void)setDefaults {
+    numRepeats = 0;
+    duration = 2.5;
+    bgColor = [UIColor clearColor];
+    graphColor = [UIColor paleWhite];
+}
 
 // Sets some of the properties that allow the 8tracks logo to scale
 // proportionally.  The values .63 and .25 came from some logic
@@ -108,7 +117,7 @@
     [path setLineCapStyle:kCGLineCapRound];
     [path setLineJoinStyle:kCGLineJoinRound];
     
-    [[UIColor redColor] setStroke];
+    [graphColor setStroke];
     [[UIColor clearColor] setFill];
     
     NSArray *values = [self lemniscate];
@@ -149,7 +158,7 @@
     float angle = M_PI / 4;
     shapeLayer.transform = CATransform3DMakeRotation (angle, 0, 0, -1);
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
-    shapeLayer.strokeColor = [[UIColor redColor] CGColor];
+    shapeLayer.strokeColor = graphColor.CGColor;
     shapeLayer.lineWidth = lineWidth;
 
     return shapeLayer;
@@ -164,7 +173,7 @@
     
     // animate path
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    pathAnimation.duration = 2.5f;
+    pathAnimation.duration = duration;
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
     pathAnimation.repeatCount = numRepeats;
