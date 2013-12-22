@@ -7,16 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "CCO8trackView.h"
 #import "UIColor+_tracks.h"
 #import "Constants.h"
+
+@protocol COOMainViewDelegate <NSObject>
+-(void)finishedLoading;
+@end
+
 
 @interface CCOMainView : UIView {
     CCO8trackView *_trackView;
     UILabel *tracks, *slogan;
 }
 
-//-(void)add8track;
+@property (nonatomic, weak) id delegate;
+
+-(void)add8track;
 -(void)drawLogo;
 
 @end

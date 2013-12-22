@@ -11,8 +11,9 @@
 #import "UIColor+_tracks.h"
 #import "Constants.h"
 
-@interface CCOMasterViewController : UIViewController
+@interface CCOMasterViewController : UIViewController <COOMainViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) CCOMainView *view;
-
+@property (strong, nonatomic) CCOMainView *startView;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *tableViewData;
 @end
