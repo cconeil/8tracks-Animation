@@ -24,15 +24,10 @@
 #define MAX_t 2.0 * M_PI
 #define SQRT_2 sqrt(2)
 #define INCREMENT_t 0.01
-
 #define SKEW_Y .05
-
 #define OFFSET 100
-
 #define Y_MIN 10
 #define Y_MIN_NEG -10
-
-
 
 #define X_MIN 10
 #define X_MIN_NEG -10

@@ -20,11 +20,23 @@
     return self;
 }
 
+BOOL isOn = NO;
 
 -(void)add8track {
-    CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    [self addSubview:v];
-    [v go];
+    
+    if (!isOn) {
+        isOn = YES;
+        CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+        [self addSubview:v];
+        [v go];
+    } else {
+        isOn = NO;
+        for (UIView *subview in [self subviews]) {
+            if ([subview class] == [CCO8trackView class]) {
+                [subview removeFromSuperview];
+            }
+        }
+    }
 }
 
 -(void)addImage {
