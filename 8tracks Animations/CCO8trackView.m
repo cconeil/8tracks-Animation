@@ -32,15 +32,28 @@
     
 }
 
-// Create the graph
+
+// Create the graph.
 -(NSArray *)lemniscate {
-    NSMutableArray *values = [NSMutableArray array];
-    CGFloat t = MIN_t;
+    NSUInteger capacity = ceil(2 * M_PI / INCREMENT_t + 1);
+    NSMutableArray *values = [NSMutableArray arrayWithCapacity:capacity];
+    
+    // start in the middle
+    CGFloat t = START_t;
     while (t < MAX_t) {
         CGPoint point = CGPointMake([self getX:t], [self getY:t]);
         [values addObject:[NSValue valueWithCGPoint:point]];
         t += INCREMENT_t;
     }
+    
+    // finish the drawing
+    t = 0.0;
+    while (t < START_t) {
+        CGPoint point = CGPointMake([self getX:t], [self getY:t]);
+        [values addObject:[NSValue valueWithCGPoint:point]];
+        t += INCREMENT_t;
+    }
+    
     return values;
 }
 

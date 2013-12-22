@@ -11,6 +11,7 @@
 
 
 #define MIN_t 0.0000001
+#define START_t 3 * M_PI_2
 #define MAX_t 2.0 * M_PI
 #define INCREMENT_t 0.01
 
