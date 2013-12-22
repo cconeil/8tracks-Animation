@@ -9,7 +9,7 @@
 #import "CCO8trackView.h"
 
 @implementation CCO8trackView
-@synthesize numRepeats, duration, bgColor, graphColor;
+@synthesize numRepeats, duration, graphColor;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,7 +26,6 @@
 -(void)setDefaults {
     numRepeats = 0;
     duration = 2.5;
-    bgColor = [UIColor clearColor];
     graphColor = [UIColor paleWhite];
 }
 

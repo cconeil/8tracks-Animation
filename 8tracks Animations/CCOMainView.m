@@ -14,10 +14,33 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        [self addImage];
+        [self setup];
     }
     return self;
+}
+
+-(void)setup {
+    self.backgroundColor = [UIColor blueTrack];
+    float logoSize = 100.0, padding_x = kWidth * .05, padding_y = kHeight / 3;
+    _trackView = [[CCO8trackView alloc] initWithFrame:CGRectMake(padding_x, padding_y, logoSize, logoSize)];
+    _trackView.graphColor = [UIColor clouds];
+    [self addSubview:_trackView];
+    
+    tracks = [[UILabel alloc] initWithFrame:CGRectMake(logoSize , padding_y + 15.0, kWidth - padding_x * 2 - logoSize, logoSize)];
+    tracks.text = @"tracks";
+    tracks.font = [UIFont fontWithName:@"Helvetica" size:70.0];
+    tracks.textColor = [UIColor clouds];
+    [self addSubview:tracks];
+    
+    slogan = [[UILabel alloc] initWithFrame:CGRectMake(padding_x + 10.0, padding_y + logoSize - 20, kWidth - padding_x * 2, 60.0)];
+    slogan.text = @"Radio, rediscovered.";
+    slogan.font = [UIFont fontWithName:@"Helvetica" size:28.5];
+    slogan.textColor = [UIColor clouds];
+    [self addSubview:slogan];
+}
+
+-(void)drawLogo {
+    [_trackView animate];
 }
 
 BOOL isOn = NO;

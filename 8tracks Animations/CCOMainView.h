@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CCO8trackView.h"
 #import "UIColor+_tracks.h"
+#import "Constants.h"
 
-@interface CCOMainView : UIView
+@interface CCOMainView : UIView {
+    CCO8trackView *_trackView;
+    UILabel *tracks, *slogan;
+}
 
--(void)add8track;
+//-(void)add8track;
+-(void)drawLogo;
 
 @end

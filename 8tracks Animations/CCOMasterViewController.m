@@ -16,9 +16,6 @@
 
 @implementation CCOMasterViewController
 
-
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,30 +24,19 @@
     return self;
 }
 
-
 - (void)loadView {
     self.view = [[CCOMainView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight)];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.view.backgroundColor = [UIColor greenColor];
-    
-    // add gesture recognizer for a tap.
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTouched:)];
-    [self.view addGestureRecognizer:tap];
 }
 
--(IBAction)backgroundTouched:(id)sender {
-    NSLog(@"Background touched");
-    [self.view add8track];
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.view drawLogo];
 }
-
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

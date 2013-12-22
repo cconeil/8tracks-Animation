@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CCOMainView.h"
-
-#define kWidth [UIScreen mainScreen].bounds.size.width
-#define kHeight [UIScreen mainScreen].bounds.size.height
+#import "UIColor+_tracks.h"
+#import "Constants.h"
 
 @interface CCOMasterViewController : UIViewController
 
