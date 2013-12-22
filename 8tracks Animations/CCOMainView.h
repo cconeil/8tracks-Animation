@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCO8trackView.h"
 
 @interface CCOMainView : UIView
 
-
-// draws an 8track logo.
--(void)draw8track;
+-(void)add8track;
 
 @end

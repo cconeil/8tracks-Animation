@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CCOMainView.h"
 
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define kHeight [UIScreen mainScreen].bounds.size.height
+
 @interface CCOMasterViewController : UIViewController
 
 @property (strong, nonatomic) CCOMainView *view;

@@ -9,27 +9,48 @@
 #import "CCOMasterViewController.h"
 
 
+
 @interface CCOMasterViewController ()
 
 @end
 
 @implementation CCOMasterViewController
 
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
+
+
+- (void)loadView {
+    self.view = [[CCOMainView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight)];
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor greenColor];
-    [self.view draw8track];
+    
+    // add gesture recognizer for a tap.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTouched:)];
+    [self.view addGestureRecognizer:tap];
 }
+
+-(IBAction)backgroundTouched:(id)sender {
+    NSLog(@"Background touched");
+    [self.view add8track];
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -1,5 +1,5 @@
 //
-//  CCO8track.h
+//  CCO8trackView.h
 //  8tracks Animations
 //
 //  Created by Chris O'Neil on 12/21/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CCO8track : UIView
+@interface CCO8trackView : UIView
 
 @end
