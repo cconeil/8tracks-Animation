@@ -9,32 +9,31 @@
 #import "CCO8trackView.h"
 
 @implementation CCO8trackView
+@synthesize numRepeats;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setPropertiesForFrame:frame];
     }
     return self;
 }
 
-#define kAlphaValue 63.0
-#define MIN_t 0.0000001
-#define MAX_t 2.0 * M_PI
-#define SQRT_2 sqrt(2)
-#define INCREMENT_t 0.01
-#define SKEW_Y .05
-#define OFFSET 100
-#define Y_MIN 10
-#define Y_MIN_NEG -10
 
-#define X_MIN 10
-#define X_MIN_NEG -10
+// Sets some of the properties that allow the 8tracks logo to scale
+// proportionally.  The values .63 and .25 came from some logic
+// as well as trial and error.
+-(void)setPropertiesForFrame:(CGRect)frame {
 
-
--(NSArray *)lemniscate {
+    offset = frame.size.width / 2;
+    a = offset * .63;
+    lineWidth = .25 * a;
     
+}
+
+// Create the graph
+-(NSArray *)lemniscate {
     NSMutableArray *values = [NSMutableArray array];
     CGFloat t = MIN_t;
     while (t < MAX_t) {
@@ -52,11 +51,11 @@
     //     a * sqrt(2) * cos(t)
     // x = --------------------
     //         sin(t)^2 + 1
-    float numerator = kAlphaValue * sqrtf(1.6) * cosf(t);
+    float numerator = a * sqrtf(1.6) * cosf(t);
     float denominator = powf(sinf(t), 2) + 1;
     
     float x = numerator / denominator;
-    return x + OFFSET;
+    return x + offset;
 }
 
 
@@ -66,19 +65,20 @@
     //     a * sqrt(2) * cos(t)sin(t)
     // y = --------------------
     //         sin(t)^2 + 1
-    float numerator = kAlphaValue * sqrtf(2.2) * cosf(t) * sinf(t);
+    float numerator = a * sqrtf(2.2) * cosf(t) * sinf(t);
     float denominator = powf(sinf(t), 2) + 1;
     
     float y = numerator / denominator;
-    return y + OFFSET;
+    return y + offset;
 }
 
 
-#define kLineWidth 15.0
+// Creates a UIBezierPath along the graph of the 8tracks logo
+// and returns it.  This function does NOT draw a graph.
 -(UIBezierPath *)get8trackPath {
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    path.lineWidth = kLineWidth;
+    path.lineWidth = lineWidth;
     [path setLineCapStyle:kCGLineCapRound];
     [path setLineJoinStyle:kCGLineJoinRound];
     
@@ -112,6 +112,7 @@
 }
 
 
+// Creates a CAShapeLayer that is the contains the 8tracks logo.
 -(CAShapeLayer *)get8tracksLayer {
     CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
     shapeLayer.opaque = NO;
@@ -123,13 +124,15 @@
     shapeLayer.transform = CATransform3DMakeRotation (angle, 0, 0, -1);
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     shapeLayer.strokeColor = [[UIColor redColor] CGColor];
-    shapeLayer.lineWidth = kLineWidth;
+    shapeLayer.lineWidth = lineWidth;
 
     return shapeLayer;
 }
 
 
--(void)go {
+// Adds the 8tracks logo as a sublayer to the view and animates it
+// repeating based on the numRepeats
+-(void)animate {
     CAShapeLayer *shapeLayer = [self get8tracksLayer];
     [self.layer addSublayer:shapeLayer];
     
@@ -138,7 +141,7 @@
     pathAnimation.duration = 2.5f;
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
-    pathAnimation.repeatCount = 0;
+    pathAnimation.repeatCount = numRepeats;
     pathAnimation.autoreverses = NO;
     [shapeLayer addAnimation:pathAnimation forKey:@"strokeEnd"];
 }

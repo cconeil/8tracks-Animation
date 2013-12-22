@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface CCO8trackView : UIView
 
--(void)go;
+#define MIN_t 0.0000001
+#define MAX_t 2.0 * M_PI
+#define INCREMENT_t 0.01
+
+@interface CCO8trackView : UIView {
+    float offset, a, lineWidth;
+}
+
+@property NSInteger numRepeats;
+
+-(void)animate;
 
 @end
