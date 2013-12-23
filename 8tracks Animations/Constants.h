@@ -14,6 +14,8 @@
 //********************************************************************//
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
+#define kStatusBarHeight 20.0
+#define kTableViewCellHeight 60.0
 
 //********************************************************************//
 //    8tracks Graph Params //

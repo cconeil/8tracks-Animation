@@ -36,7 +36,7 @@
     [self.view addSubview:self.startView];
     
     // handle tableView
-    self.tableViewData = [NSMutableArray arrayWithArray:@[@"Hey!", @"You", @"should", @"pull", @"to", @"refresh!", @":)"]];
+    self.tableViewData = [NSMutableArray arrayWithArray:@[@"", @"Hi, I'm Chris and", @"I recently applied for", @"an internship at 8tracks.", @"I decided to build a few", @"animations for you this", @"weekend to prove that", @" I want this and I have", @"the skills to work for", @"8tracks. No one will work", @"harder than I will...", @"and that's a promise.", @"Oh, pull to refresh :)"]];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(kWidth, 0, kWidth, kHeight) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -103,6 +103,13 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        return kTableViewCellHeight + kStatusBarHeight;
+    }
+    return kTableViewCellHeight;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -117,6 +124,8 @@
     
     NSString *text = [self.tableViewData objectAtIndex:indexPath.row];
     cell.textLabel.text = text;
+    cell.textLabel.textColor = [UIColor blueTrack];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica Bold" size:24.0];
     
     return cell;
 }
