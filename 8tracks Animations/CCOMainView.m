@@ -46,13 +46,18 @@
 }
 
 
+// draws the logo on the screen
 -(void)drawLogo {
     [_trackView animate];
 }
 
+
+// removes the logo for the view -- this should only be called when the view
+// is moved off of the screen.
 -(void)removeLogo {
     [_trackView stopAnimating];
 }
+
 
 // Will be called after the 8tracks logo is drawn
 -(void)stoppedAnimating {

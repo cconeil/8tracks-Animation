@@ -140,11 +140,11 @@
 }
 
 
-// This is a fake refresh, It will pause for 1 second and then finish refreshing.
+// Faking a request to the server and response
 -(void)mockRefresh {
-    [NSTimer scheduledTimerWithTimeInterval:1.01f target:self selector:@selector(mockFinish) userInfo:nil repeats:NO];
+    float fakeTimeToLoad = ((float)arc4random() / ARC4RANDOM_MAX) * 2;
+    [NSTimer scheduledTimerWithTimeInterval:fakeTimeToLoad target:self selector:@selector(mockFinish) userInfo:nil repeats:NO];
 }
-
 
 -(void)mockFinish {
     [self.refreshControl finishedLoading];

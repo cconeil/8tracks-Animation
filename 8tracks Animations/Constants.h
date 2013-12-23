@@ -27,5 +27,6 @@
 #define kRefreshControlFullHeight 500.0f
 #define kRefreshControlHalfHeight (kRefreshControlStandardHeight / 2.0f)
 #define kRefreshLogoSize 64.0
+#define ARC4RANDOM_MAX 0x100000000
 
 #endif
