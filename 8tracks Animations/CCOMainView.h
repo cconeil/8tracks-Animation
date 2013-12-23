@@ -26,5 +26,6 @@
 
 -(void)add8track;
 -(void)drawLogo;
+-(void)removeLogo;
 
 @end

@@ -18,7 +18,7 @@
         [self setDefaults];
         [self setPropertiesForFrame:frame];
         logo = [self get8tracksLayer];
-//        [self.layer addSublayer:logo];
+        animating = NO;
     }
     return self;
 }
@@ -153,12 +153,17 @@
 // Adds the 8tracks logo as a sublayer to the view and animates it
 // repeating based on the numRepeats
 -(void)animate {
+    
+    if (logo.superlayer != nil) {
+        [logo removeFromSuperlayer];
+    }
+    
     logo = [self get8tracksLayer];
     [self.layer addSublayer:logo];
     
     // animate path
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    pathAnimation.delegate = self.superview;
+    pathAnimation.delegate = self;
     pathAnimation.duration = duration;
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
@@ -167,14 +172,32 @@
     [logo addAnimation:pathAnimation forKey:@"strokeEnd"];
 }
 
--(void)show {
-    
-}
 
+// stops the animation by removing it from the superLayer
 -(void)stopAnimating {
     [logo removeFromSuperlayer];
 }
 
+
+// fired when the animation starts.
+-(void)animationDidStart:(CAAnimation *)anim {
+    animating = YES;
+    [self.delegate stoppedAnimating];
+}
+
+
+// fired when the animation stops
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    animating = !flag;
+    if (flag) {
+        [self.delegate stoppedAnimating];
+    }
+}
+
+
+-(BOOL)isAnimating {
+    return animating;
+}
 
 
 @end

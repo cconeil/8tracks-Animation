@@ -18,5 +18,4 @@
 +(UIColor *)blueTrack;
 +(UIColor *)clouds;
 
-
 @end

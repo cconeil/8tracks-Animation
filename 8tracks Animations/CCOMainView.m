@@ -27,6 +27,7 @@
     _trackView = [[CCO8trackView alloc] initWithFrame:CGRectMake(padding_x, padding_y, logoSize, logoSize)];
     _trackView.graphColor = [UIColor clouds];
     _trackView.duration = 2.0;
+    _trackView.delegate = self;
     [self addSubview:_trackView];
     
     // add the "tracks"
@@ -49,11 +50,15 @@
     [_trackView animate];
 }
 
+-(void)removeLogo {
+    [_trackView stopAnimating];
+}
 
 // Will be called after the 8tracks logo is drawn
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+-(void)stoppedAnimating {
     [self.delegate finishedLoading];
 }
+
 
 BOOL isOn = NO;
 

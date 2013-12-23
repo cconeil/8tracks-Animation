@@ -11,19 +11,27 @@
 #import "UIColor+_tracks.h"
 #import "Constants.h"
 
+@protocol CCO8trackViewDelegate <NSObject>
 
+-(void)startedAnimating;
+-(void)stoppedAnimating;
+
+@end
 
 
 @interface CCO8trackView : UIView {
     float offset, a, lineWidth, padding;
     CAShapeLayer *logo;
+    BOOL animating;
 }
 
+@property (nonatomic, weak) id delegate;
 @property NSInteger numRepeats; // defaults to 0
 @property float duration; // defaults to 2.5
 @property (nonatomic, strong) UIColor *graphColor; // defaults to paleWhite
 
 -(void)animate;
 -(void)stopAnimating;
+-(BOOL)isAnimating;
 
 @end

@@ -69,13 +69,13 @@
 
 // Takes us to the tableView
 -(void)goToTableView {
-    NSLog(@"goToTableView");
     __weak CCOMasterViewController *weakSelf = self;
     [UIView animateWithDuration:.2 animations:^{
         [weakSelf.startView setFrame:CGRectMake(-kWidth, 0, kWidth, kHeight)];
         [weakSelf.tableView setFrame:CGRectMake(0, 0, kWidth, kHeight)];
     } completion:^(BOOL finished) {
         // change swipe gesutre
+        [self.startView removeLogo];
         [swipe removeTarget:weakSelf action:@selector(goToTableView)];
         [swipe addTarget:weakSelf action:@selector(goToMainView)];
         swipe.direction = UISwipeGestureRecognizerDirectionRight;
@@ -134,6 +134,7 @@
     [self.refreshControl tableViewScrolled];
 }
 
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self.refreshControl userStoppedDragging];
 }
@@ -143,6 +144,7 @@
 -(void)mockRefresh {
     [NSTimer scheduledTimerWithTimeInterval:1.01f target:self selector:@selector(mockFinish) userInfo:nil repeats:NO];
 }
+
 
 -(void)mockFinish {
     [self.refreshControl finishedLoading];
