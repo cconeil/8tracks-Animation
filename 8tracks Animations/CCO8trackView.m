@@ -43,6 +43,7 @@
 
 
 // Create the graph.
+// http://en.wikipedia.org/wiki/Lemniscate
 -(NSArray *)lemniscate {
     NSUInteger capacity = ceil(2 * M_PI / INCREMENT_t + 1);
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:capacity];
