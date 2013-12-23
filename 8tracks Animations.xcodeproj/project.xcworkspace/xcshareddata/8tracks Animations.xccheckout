@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C93CFF05-160B-41F4-B497-F9C101935875</string>
+	<key>IDESourceControlProjectName</key>
+	<string>8tracks Animations</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E24BD04E-1F02-4C0D-AAF5-5240669490DC</key>
+		<string>ssh://github.com/cconeil/8tracks-Animation.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>8tracks Animations.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E24BD04E-1F02-4C0D-AAF5-5240669490DC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/cconeil/8tracks-Animation.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E24BD04E-1F02-4C0D-AAF5-5240669490DC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E24BD04E-1F02-4C0D-AAF5-5240669490DC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>8tracks Animations</string>
+		</dict>
+	</array>
+</dict>
+</plist>
