@@ -99,14 +99,10 @@
 // Creates a UIBezierPath along the graph of the 8tracks logo
 // and returns it.  This function does NOT draw a graph.
 -(UIBezierPath *)get8trackPath {
-    UIBezierPath *path = [UIBezierPath bezierPath];
     
-    path.lineWidth = lineWidth;
+    UIBezierPath *path = [UIBezierPath bezierPath];
     [path setLineCapStyle:kCGLineCapRound];
     [path setLineJoinStyle:kCGLineJoinRound];
-    
-    [graphColor setStroke];
-    [[UIColor clearColor] setFill];
     
     NSArray *values = [self lemniscate];
     

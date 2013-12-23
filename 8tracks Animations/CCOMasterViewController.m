@@ -126,9 +126,11 @@
     cell.textLabel.text = text;
     cell.textLabel.textColor = [UIColor blueTrack];
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica Bold" size:24.0];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
+
 
 #pragma mark Memory Warnings
 - (void)didReceiveMemoryWarning

@@ -26,7 +26,7 @@
     float logoSize = 100.0, padding_x = kWidth * .05, padding_y = kHeight / 3;
     _trackView = [[CCO8trackView alloc] initWithFrame:CGRectMake(padding_x, padding_y, logoSize, logoSize)];
     _trackView.graphColor = [UIColor clouds];
-    _trackView.duration = 2.0;
+    _trackView.duration = 1.4;
     _trackView.delegate = self;
     [self addSubview:_trackView];
     
