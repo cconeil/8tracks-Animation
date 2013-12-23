@@ -25,7 +25,7 @@
                                                                            tableView.frame.origin.y,
                                                                            tableView.frame.size.width,
                                                                            kRefreshControlFullHeight)];
-    
+
     [tableView setTableHeaderView:refreshControl];
     refreshControl.tableView = tableView;
     refreshControl.target = target;
@@ -55,9 +55,14 @@
         self.logo.numRepeats = 100;
         
         // release to refresh label.
-        self.releaseToRefreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        self.releaseToRefreshLabel.text = @"COCK";
+        self.releaseToRefreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                               self.frame.size.height - kRefreshLogoSize / 2,
+                                                                               kWidth,
+                                                                               kRefreshLogoSize / 2)];
+        self.releaseToRefreshLabel.text = @"Pull down to refresh.";
         self.releaseToRefreshLabel.textColor = [UIColor whiteColor];
+        self.releaseToRefreshLabel.textAlignment = NSTextAlignmentCenter;
+        self.releaseToRefreshLabel.font = [UIFont fontWithName:@"Helvetica" size:20.0];
         
         [self addSubview:self.logo];
         [self addSubview:self.releaseToRefreshLabel];
@@ -77,11 +82,15 @@
             __weak CCO8tracksUIRefreshControl *weakSelf = self;
             UIEdgeInsets newInsets = self.tableView.contentInset;
             newInsets.top = -(kRefreshControlFullHeight - kRefreshControlStandardHeight);
-           
+            
             [UIView animateWithDuration:0.2f animations:^(void){
                 weakSelf.tableView.contentInset = newInsets;
             }];
-
+            
+            [UIView animateWithDuration:.01 animations:^{
+                [self.releaseToRefreshLabel setAlpha:0.0];
+            }];
+            
             [self.logo animate];
             
             //Let the target know
@@ -130,7 +139,6 @@
         CGFloat rawOffset = kRefreshControlFullHeight - self.tableView.contentOffset.y;
         CGFloat offset = MIN(rawOffset / 2.0f, kRefreshControlHalfHeight);
         CGFloat proportionToMaxOffset = (offset / kRefreshControlHalfHeight);
-
         self.releaseToRefreshLabel.alpha = proportionToMaxOffset;
     }
 }

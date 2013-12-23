@@ -65,35 +65,4 @@
 }
 
 
-BOOL isOn = NO;
-
--(void)add8track {
-    
-    if (!isOn) {
-        isOn = YES;
-        CCO8trackView *v = [[CCO8trackView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
-        v.numRepeats = 0;
-        v.graphColor = [UIColor clouds];
-        
-        
-        [self addSubview:v];
-        [v animate];
-    } else {
-        isOn = NO;
-        for (UIView *subview in [self subviews]) {
-            if ([subview class] == [CCO8trackView class]) {
-                [subview removeFromSuperview];
-            }
-        }
-    }
-}
-
--(void)addImage {
-    UIImage *image = [UIImage imageNamed:@"8tracks.jpg"];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(9, 12, 180, 180)];
-    imageView.image = image;
-    [self addSubview:imageView];
-}
-
-
 @end

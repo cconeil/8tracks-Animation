@@ -24,7 +24,7 @@
 
 @property (nonatomic, weak) id delegate;
 
--(void)add8track;
+
 -(void)drawLogo;
 -(void)removeLogo;
 
